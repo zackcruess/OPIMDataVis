@@ -50,7 +50,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>OPIM DATA VIS </h1>
+      <h1>OPIM DATA VISUALIZATION </h1>
       <div className="card">
         <button onClick={getSheet}>
           get sheet
