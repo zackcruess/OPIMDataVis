@@ -40,3 +40,31 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Table styles */
+.csv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; 
+}
+
+.csv-table th, .csv-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.csv-table th {
+  background-color: #f2f2f2;
+}
+
+.csv-table .even-row {
+  background-color: #f9f9f9;
+}
+
+.csv-table .odd-row {
+  background-color: #ffffff;
+}
+
+.csv-table th, .csv-table td {
+  text-align: left;
+}
