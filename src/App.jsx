@@ -51,7 +51,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIM DATA VISUALIZATION TEST 101</h1>
+      <h1>OPIM DATA VISUALIZATION</h1>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
