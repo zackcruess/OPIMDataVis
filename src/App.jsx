@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
+import insideLogo from './assets/InsideAirbnb.jfif';
 import './App.css';
 
 function App() {
@@ -44,7 +45,10 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>OPIM 3211 Project - Inside AirBnb</h1>
+      <h1>OPIM DATA VISUALIZATION TEST</h1>
+      <div>
+        <img src={myImage} alt="Inside Airbnb logo" />
+      </div>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
