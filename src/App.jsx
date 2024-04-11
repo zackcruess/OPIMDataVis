@@ -44,6 +44,9 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FInsideAirbnb&psig=AOvVaw0nFH0VR8JbS_2vGWam3jlg&ust=1712953921495000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNilx-GAu4UDFQAAAAAdAAAAABAE" target="_blank">
+          <img src={reactLogo} className="logo insideairbnb" alt="InsideAirBnb logo" />
+        </a>
       </div>
       <h1>OPIM DATA VISUALIZATION TEST 101</h1>
       <div className="card">
