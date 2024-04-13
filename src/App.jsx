@@ -37,8 +37,9 @@ function App() {
 
   return (
     <>
-      <div style={{ backgroundColor: 'lightgray', padding: '10px' }}>
-        <h1 style={{ color: 'darkblue', fontSize: '24px', textAlign: 'left', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+      <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+        <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" style={{ color: 'lightblue', textDecoration: 'none' }}>Submit a STR Regulation Here</a>
       </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
@@ -54,7 +55,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+      <h1></h1>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
