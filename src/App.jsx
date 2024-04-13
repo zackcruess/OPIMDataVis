@@ -39,7 +39,10 @@ function App() {
     <>
       <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
-        <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" style={{ color: 'lightblue', textDecoration: 'none' }}>Submit a STR Regulation Here</a>
+        <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
+      </div>
+      <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
+        Hello, this is a dashboard prototype made for Inside AirBnb in collaboration with the University of Connecticut's OPIM 3211 class. This dashboard takes survey submissions from users and creates visualizations based on the results.
       </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
@@ -51,9 +54,7 @@ function App() {
         <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" target="_blank">
           <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" />
         </a>
-        <a target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
-        </a>
+
       </div>
       <h1></h1>
       <div className="card">
