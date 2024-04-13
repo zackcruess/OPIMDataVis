@@ -37,8 +37,8 @@ function App() {
 
   return (
     <>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-        <h1 style={{ color: 'darkblue', textAlign: 'center' }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+      <div style={{ backgroundColor: 'lightgray', padding: '10px' }}>
+        <h1 style={{ color: 'darkblue', fontSize: '24px', textAlign: 'left', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
       </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
