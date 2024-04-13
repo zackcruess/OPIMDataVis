@@ -37,6 +37,9 @@ function App() {
 
   return (
     <>
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+        <h1 style={{ color: 'darkblue', textAlign: 'center' }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+      </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -51,7 +54,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIM DATA VISUALIZATION 111</h1>
+      <h1>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
