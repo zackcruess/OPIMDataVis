@@ -110,7 +110,7 @@ function App() {
             ))}
           </tbody>
         </table>
-        <canvas id="pieChart"></canvas>
+        <canvas id="pieChart" width="400" height="400"></canvas>
       </div>
     </>
   );
