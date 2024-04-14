@@ -14,7 +14,7 @@ function App() {
       setLoading(true);
     } else {
       setLoading(false);
-      createPieChart();
+    createPieChart();
     }
   }, [csvArray]);
 
@@ -97,6 +97,7 @@ function App() {
       </div>
       <h1>OPIM DATA VISUALIZATION</h1>
       <div className="card">
+        <canvas id="pieChart" width="400" height="400"></canvas>
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
           <thead>
@@ -116,7 +117,6 @@ function App() {
             ))}
           </tbody>
         </table>
-        <canvas id="pieChart" style={{ width: '100%', height: 'auto' }}></canvas>
       </div>
     </>
   );
