@@ -3,9 +3,14 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import insideLogo from './assets/InsideAirbnb.jfif';
 import './App.css';
+import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
+
+  useEffect(() => {
+    createPieChart();
+  }, [csvArray]);
 
   async function getSheet() {
     const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
@@ -35,15 +40,41 @@ function App() {
     return csvData;
   }
 
+  function createPieChart() {
+    const ctx = document.getElementById('pieChart');
+    if (!ctx || !csvArray[0]) return;
+
+    const columnData = csvArray.slice(1).map(row => row[9]);
+    const labels = [...new Set(columnData)]; // Get unique values from the column
+    const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: dataCounts,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(153, 102, 255, 0.7)',
+            'rgba(255, 159, 64, 0.7)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+
+
   return (
     <>
-      <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
-        <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
-      </div>
-      <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
-        Hello, this is a dashboard prototype made for Inside AirBnb in collaboration with the University of Connecticut's OPIM 3211 class. This dashboard takes survey submissions from users and creates visualizations based on the results.
-      </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -51,12 +82,14 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-        <a href="https://forms.gle/EEQM9ZSU6oqjAaFk9" target="_blank">
+        <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FInsideAirbnb&psig=AOvVaw0nFH0VR8JbS_2vGWam3jlg&ust=1712953921495000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNilx-GAu4UDFQAAAAAdAAAAABAE" target="_blank">
           <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" />
         </a>
-
+        <a target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
+        </a>
       </div>
-      <h1></h1>
+      <h1>OPIM DATA VISUALIZATION</h1>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
@@ -77,6 +110,7 @@ function App() {
             ))}
           </tbody>
         </table>
+        <canvas id="pieChart"></canvas> 
       </div>
     </>
   );
