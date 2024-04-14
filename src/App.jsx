@@ -7,9 +7,15 @@ import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    createPieChart();
+    if (csvArray.length === 1 && csvArray[0].length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+      createPieChart();
+    }
   }, [csvArray]);
 
   async function getSheet() {
