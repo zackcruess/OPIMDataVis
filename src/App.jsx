@@ -116,7 +116,7 @@ function App() {
             ))}
           </tbody>
         </table>
-        <canvas id="pieChart" width="400" height="400"></canvas>
+        <canvas id="pieChart" style={{ width: '100%', height: 'auto' }}></canvas>
       </div>
     </>
   );
