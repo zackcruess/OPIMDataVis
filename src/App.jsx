@@ -8,12 +8,17 @@ import Chart from 'chart.js/auto';
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
   const [loading, setLoading] = useState(false);
+  const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
     if (csvArray.length === 1 && csvArray[0].length === 0) {
       setLoading(true);
     } else {
       setLoading(false);
+    createPieChart();
+    if (chartInstance) {
+      chartInstance.destroy(); // Destroy previous chart instance
+    }
     createPieChart();
     }
   }, [csvArray]);
@@ -54,7 +59,7 @@ function App() {
     const labels = [...new Set(columnData)]; // Get unique values from the column
     const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
 
-    new Chart(ctx, {
+    const newChartInstance = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
@@ -76,8 +81,8 @@ function App() {
         maintainAspectRatio: false
       }
     });
+  setChartInstance(newChartInstance);
   }
-
 
   return (
     <>
