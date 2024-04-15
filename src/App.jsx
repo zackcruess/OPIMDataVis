@@ -7,17 +7,20 @@ import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
-  //const [loading, setLoading] = useState(false);
-  //const [chartInstance, setChartInstance] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    createPieChart();
-    return () => {
-      // Cleanup function to destroy the chart instance
+    if (csvArray.length === 1 && csvArray[0].length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+      createPieChart();
       if (chartInstance) {
-        chartInstance.destroy();
+        chartInstance.destroy(); // Destroy previous chart instance
       }
-    };
+      createPieChart();
+    }
   }, [csvArray]);
 
   async function getSheet() {
@@ -47,8 +50,6 @@ function App() {
     });
     return csvData;
   }
-
-let chartInstance = null;
 
   function createPieChart() {
     const ctx = document.getElementById('pieChart');
