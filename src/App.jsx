@@ -7,20 +7,17 @@ import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
-  const [loading, setLoading] = useState(false);
-  const [chartInstance, setChartInstance] = useState(null);
+  //const [loading, setLoading] = useState(false);
+  //const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    if (csvArray.length === 1 && csvArray[0].length === 0) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-      createPieChart();
+    createPieChart();
+    return () => {
+      // Cleanup function to destroy the chart instance
       if (chartInstance) {
-        chartInstance.destroy(); // Destroy previous chart instance
+        chartInstance.destroy();
       }
-      createPieChart();
-    }
+    };
   }, [csvArray]);
 
   async function getSheet() {
@@ -51,15 +48,21 @@ function App() {
     return csvData;
   }
 
+let chartInstance = null;
+
   function createPieChart() {
     const ctx = document.getElementById('pieChart');
     if (!ctx || !csvArray[0]) return;
+
+    if (chartInstance) {
+      chartInstance.destroy(); // Destroy previous chart instance
+    }
 
     const columnData = csvArray.slice(1).map(row => row[9]);
     const labels = [...new Set(columnData)]; // Get unique values from the column
     const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
 
-    const newChartInstance = new Chart(ctx, {
+    chartInstance = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
@@ -81,7 +84,6 @@ function App() {
         maintainAspectRatio: false
       }
     });
-    setChartInstance(newChartInstance);
   }
 
   return (
