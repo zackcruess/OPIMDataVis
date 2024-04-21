@@ -51,6 +51,10 @@
 .csv-table th, .csv-table td {
   padding: 8px;
   border: 1px solid #ddd;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .csv-table th {
