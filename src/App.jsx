@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-      <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999}}>
+      <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
         <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
         <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
       </div>
@@ -61,7 +61,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIM DATA VISUALIZATION</h1>
+      <h1>OPIM 3211 DATA VISUALIZATION</h1>
       <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
