@@ -63,7 +63,8 @@ function App() {
     const labels = [...new Set(columnData)]; // Get unique values from the column
     const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
 
-    setChartInstance = new Chart(ctx, {
+    // Use setChartInstance to update the chartInstance state
+    setChartInstance(new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
@@ -84,7 +85,7 @@ function App() {
         responsive: true,
         maintainAspectRatio: false
       }
-    });
+    }));
   }
 
   return (
