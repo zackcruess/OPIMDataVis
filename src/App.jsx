@@ -63,7 +63,7 @@ function App() {
     const labels = [...new Set(columnData)]; // Get unique values from the column
     const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
 
-    chartInstance = new Chart(ctx, {
+    setChartInstance = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
@@ -110,7 +110,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIMMM DATA VISUALIZATION</h1>
+      <h1>OPIMM DATA VISUALIZATION</h1>
       <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
       <canvas id="pieChart" width="400" height="400"></canvas>
       <div className="card">
