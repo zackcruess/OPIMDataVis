@@ -11,17 +11,16 @@ function App() {
   const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    if (csvArray.length === 1 && csvArray[0].length === 0) {
-      setLoading(true);
-    } else {
-      setLoading(false);
+    setLoading(csvArray.length === 1 && csvArray[0].length === 0);
+
+    if (!loading) {
       createPieChart();
       if (chartInstance) {
         chartInstance.destroy(); // Destroy previous chart instance
       }
       createPieChart();
     }
-  }, [csvArray]);
+  }, [csvArray, loading]);
 
   async function getSheet() {
     const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
