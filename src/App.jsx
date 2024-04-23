@@ -11,16 +11,17 @@ function App() {
   const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    setLoading(csvArray.length === 1 && csvArray[0].length === 0);
-
-    if (!loading) {
+    if (csvArray.length === 1 && csvArray[0].length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
       createPieChart();
       if (chartInstance) {
         chartInstance.destroy(); // Destroy previous chart instance
       }
       createPieChart();
     }
-  }, [csvArray, loading]);
+  }, [csvArray]);
 
   async function getSheet() {
     const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
@@ -89,6 +90,7 @@ function App() {
 
   return (
     <>
+      <div style={{ backgroundColor: 'lightgray' }}></div>
       <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
         <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
         <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
