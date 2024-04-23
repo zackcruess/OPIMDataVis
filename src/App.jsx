@@ -95,7 +95,7 @@ function App() {
         <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
       </div>
       <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
-        This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb.
+        This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal of this project was to visualize data about short-term rental regulations. The data is constantly being updated, and if you would like to submit an STR Regulation, click the link in the righthand corner.
       </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
@@ -111,7 +111,7 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIMM DATA VISUALIZATION</h1>
+      <h1>OPIM DATA VISUALIZATION</h1>
       <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
       <canvas id="pieChart" width="200" height="200"></canvas>
       <div className="card">
