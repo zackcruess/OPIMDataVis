@@ -140,16 +140,7 @@ function App() {
               <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
               <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px', fontFamily: 'Times New Roman', fontSize: '14pt' }}>Donate!</a>
             </div>
-            <div>
-              <div style={{ backgroundColor: 'white', padding: '10px', fontFamily: 'Times New Roman', fontSize: '14pt' }}>
-                <span>Select State</span>
-                <select>
-                  {states.map((state, index) => (
-                    <option key={index} value={state.value}>{state.name}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
+
           </div>
           <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
             This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal of this project was to visualize data about short-term rental regulations. The data is constantly being updated, and if you would like to submit an STR Regulation, click the link in the righthand corner.
