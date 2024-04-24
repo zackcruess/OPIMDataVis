@@ -7,48 +7,49 @@ import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
-
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getSheet();
+    fetchData();
   }, []);
 
-  async function getSheet() {
-    const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
+  const fetchData = async () => {
+    setLoading(true);
     try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const data = await response.text();
-        setCsvArray(parseCSV(data));
-        createPieChart(parseCSV(data));
-      }
+      const response = await fetch('https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database');
+      const csvData = await response.text();
+      const parsedData = parseCSV(csvData);
+      setData(parsedData);
+      createPieChart(parsedData);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
-  function parseCSV(csvString) {
-    // Split CSV string into rows
+  const parseCSVPie = (csvString) => {
     const rows = csvString.trim().split('\n');
-    // Initialize 2D array
-    const csvData = [];
-    // Iterate over each row
-    rows.forEach(row => {
-      // Split row into columns
-      const columns = row.split(',').map(cell => cell.replace(/"/g, ''));
-      // Add columns to 2D array
-      csvData.push(columns);
+    const headers = rows[0].split(',');
+    return rows.slice(1).map(row => {
+      const rowData = row.split(',');
+      return headers.reduce((obj, header, index) => {
+        obj[header.trim()] = rowData[index].trim();
+        return obj;
+      }, {});
     });
-    return csvData;
-  }
+  };
 
-  function createPieChart(csvData) {
-    const columnData = csvArray.slice(1).map(row => row[9]);
+  const createPieChart = (data) => {
+    const ctx = document.getElementById('pieChart');
+    if (!ctx) return;
+
+    const columnData = data.map(row => row['Required Inspections']);
     const labels = [...new Set(columnData)]; // Get unique values from the column
     const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
 
-    // Use setChartInstance to update the chartInstance state
-    setChartInstance(new Chart(ctx, {
+    new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
@@ -69,7 +70,35 @@ function App() {
         responsive: true,
         maintainAspectRatio: false
       }
-    }));
+    });
+  }
+
+  async function getSheet() {
+    const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.text();
+        setCsvArray(parseCSV(data));
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  function parseCSV(csvString) {
+    // Split CSV string into rows
+    const rows = csvString.trim().split('\n');
+    // Initialize 2D array
+    const csvData = [];
+    // Iterate over each row
+    rows.forEach(row => {
+      // Split row into columns
+      const columns = row.split(',').map(cell => cell.replace(/"/g, ''));
+      // Add columns to 2D array
+      csvData.push(columns);
+    });
+    return csvData;
   }
 
   return (
@@ -101,9 +130,13 @@ function App() {
             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
           </a>
         </div>
-        <h1>OPIMM DATA VISUALIZATION</h1>
+        <h1>OPIM DATA VISUALIZATION</h1>
         <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
-        <canvas id="pieChart" width="150" height="150"></canvas>
+        <div>
+      <h1>Pie Chart</h1>
+      <canvas id="pieChart" width="10" height="10"></canvas>
+      {loading && <p>Loading...</p>}
+    </div>
         <div className="card">
           <button onClick={getSheet}>Get Sheet</button>
           <table className="csv-table">
@@ -129,7 +162,5 @@ function App() {
     </>
   );
 }
-
-
 
 export default App;
