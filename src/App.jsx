@@ -11,16 +11,16 @@ function App() {
   const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    setLoading(csvArray.length === 1 && csvArray[0].length === 0);
-
-    if (!loading) {
-      createPieChart();
-      if (chartInstance) {
-        chartInstance.destroy(); // Destroy previous chart instance
-      }
-      createPieChart();
+    if (csvArray.length === 1 && csvArray[0].length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+      document.addEventListener('DOMContentLoaded', createPieChart);
     }
-  }, [csvArray, loading]);
+    return () => {
+      document.removeEventListener('DOMContentLoaded', createPieChart);
+    };
+  }, [csvArray]);
 
   async function getSheet() {
     const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
@@ -89,6 +89,7 @@ function App() {
 
   return (
     <>
+      <div style={{ backgroundColor: 'lightgray' }}></div>
       <div style={{ backgroundColor: 'lightgray', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
         <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
         <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px' }}>Submit a STR Regulation <span style={{ whiteSpace: 'nowrap' }}>Here</span></a>
@@ -110,9 +111,9 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
         </a>
       </div>
-      <h1>OPIMM DATA VISUALIZATIONN</h1>
+      <h1>OPIMM DATA VISUALIZATION WORKING NOW</h1>
       <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
-      <canvas id="pieChart" width="400" height="400"></canvas>
+      <canvas id="pieChart" width="150" height="150"></canvas>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
@@ -133,9 +134,56 @@ function App() {
             ))}
           </tbody>
         </table>
-      </div>
+        <div style={{ backgroundColor: 'white', minHeight: '200px' }}>
+          <div style={{ backgroundColor: 'white', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
+            <div>
+              <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+              <a href="https://forms.gle/UdAMsk1bL49Gegiv9" style={{ color: '#007bff', fontWeight: 'bold', textDecoration: 'none', marginLeft: '10px', fontFamily: 'Times New Roman', fontSize: '14pt' }}>Donate!</a>
+            </div>
+            <div>
+              <div style={{ backgroundColor: 'white', padding: '10px', fontFamily: 'Times New Roman', fontSize: '14pt' }}>
+                <span>Select State</span>
+                <select>
+                  {states.map((state, index) => (
+                    <option key={index} value={state.value}>{state.name}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
+            This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal of this project was to visualize data about short-term rental regulations. The data is constantly being updated, and if you would like to submit an STR Regulation, click the link in the righthand corner.
+          </div>
+          <h1>OPIM DATA VISUALIZATION</h1>
+          <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
+          <canvas id="pieChart" width="200" height="200"></canvas>
+          <div className="card">
+            <button onClick={getSheet}>Get Sheet</button>
+            <table className="csv-table">
+              <thead>
+                <tr>
+                  {csvArray[0].map((columnName, index) => (
+                    <th key={index}>{columnName}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {csvArray.slice(1).map((row, rowIndex) => (
+                  <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'even-row' : 'odd-row'}>
+                    {row.map((cell, cellIndex) => (
+                      <td key={cellIndex}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div >
     </>
   );
 }
+
+
 
 export default App;
