@@ -113,7 +113,7 @@ function App() {
       </div>
       <h1>OPIMM DATA VISUALIZATION</h1>
       <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
-      <canvas id="pieChart" width="200" height="200"></canvas>
+      <canvas id="pieChart" width="150" height="150"></canvas>
       <div className="card">
         <button onClick={getSheet}>Get Sheet</button>
         <table className="csv-table">
