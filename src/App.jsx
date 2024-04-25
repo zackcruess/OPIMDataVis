@@ -7,7 +7,7 @@ import Chart from 'chart.js/auto';
 
 function App() {
   const [csvArray, setCsvArray] = useState([[]]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,6 +29,8 @@ function App() {
     }
   };
 
+
+
   const parseCSVPie = (csvString) => {
     const rows = csvString.trim().split('\n');
     const headers = rows[0].split(',');
@@ -42,12 +44,17 @@ function App() {
   };
 
   const createPieChart = (data) => {
+    console.log(data);
     const ctx = document.getElementById('pieChart');
     if (!ctx) return;
 
-    const columnData = data.map(row => row['Required Inspections']);
-    const labels = [...new Set(columnData)]; // Get unique values from the column
-    const dataCounts = labels.map(label => columnData.filter(value => value === label).length);
+    const requiredInspectionsIndex = data[0].indexOf('Required Inspections'); // Find index of 'Required Inspections' column
+    const requiredInspectionsData = [];
+    for (let i = 0; i < data.length; i++) {
+      requiredInspectionsData.push(data[i][requiredInspectionsIndex]);
+    }
+    const labels = [...new Set(requiredInspectionsData)];
+    const dataCounts = labels.map(label => requiredInspectionsData.filter(value => value === label).length);
 
     new Chart(ctx, {
       type: 'pie',
@@ -103,40 +110,58 @@ function App() {
 
   return (
     <>
-      <div style={{ backgroundColor: 'lightgray', minHeight: '100vh', padding: 0, margin: 0 }}>
+      <div style={{ backgroundColor: 'lightgray', minHeight: '200vh', padding: 0, marginLeft: 0, marginRight: 0, width: '100%' }}>
         <div style={{ backgroundColor: 'white', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
           <div>
             <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ color: 'white', backgroundColor: '#007bff', fontWeight: 'bold', padding: '5px 10px', borderRadius: '5px' }}>Donate!</span>
-            <a href="https://forms.gle/WpxsbaiAgdeqX2JJ8" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Times New Roman', fontSize: '18pt', color: '#007bff', marginLeft: '10px', textDecoration: 'none' }}>Submit an STR Regulation Here</a>
+            <span style={{ color: 'white', backgroundColor: '#007bff', fontWeight: 'bold', padding: '5px 10px', borderRadius: '5px', marginRight: '30px' }}>Donate!</span>
+            <a href="https://forms.gle/WpxsbaiAgdeqX2JJ8" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Times New Roman', fontSize: '16pt', color: '#007bff', marginRight: '150px', textDecoration: 'none' }}>Submit an STR Regulation Here</a>
           </div>
         </div>
-        <div style={{ paddingLeft: '20px', paddingTop: '60px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw' }}>
-          This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb.
+        <div style={{ position: 'relative' }}>
+          <select
+            style={{
+              backgroundColor: 'white',
+              padding: '10px',
+              position: 'absolute',
+              top: '50px',
+              right: '20px',
+              width: '200px',
+              borderRadius: '10px',
+              boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+              fontFamily: 'Times New Roman',
+              fontSize: '16pt',
+              color: '#666', // gray color
+            }}
+          >
+            <option value="">Select State</option>
+            <option value="1">Alabama</option>
+            <option value="2">Alaska</option>
+            <option value="3">Arkansas</option>
+          </select>
+        </div>
+        <div style={{ paddingLeft: '20px', paddingTop: '40px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw', textAlign: 'Left' }}>
+          This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal was to effectively demonstrate the effects of Short-Term Rental regulations using data visualizations. 4/25/24.
         </div>
         <div>
-          <a href="https://vitejs.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-          <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FInsideAirbnb&psig=AOvVaw0nFH0VR8JbS_2vGWam3jlg&ust=1712953921495000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNilx-GAu4UDFQAAAAAdAAAAABAE" target="_blank">
+          <a href="https://insideairbnb.com/" target="_blank">
             <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" />
           </a>
-          <a target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" />
+          <a href="https://undergrad.business.uconn.edu/academics/majors/aim/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none' }} />
           </a>
         </div>
         <h1>OPIM DATA VISUALIZATION</h1>
         <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
         <div>
-      <h1>Pie Chart</h1>
-      <canvas id="pieChart" width="10" height="10"></canvas>
-      {loading && <p>Loading...</p>}
-    </div>
+          <h1>Pie Chart</h1>
+          <div style={{ width: '500px', height: '500px' }}>
+            <canvas id="pieChart" width="400" height="400"></canvas>
+          </div>
+          {loading && <p>Loading...</p>}
+        </div>
         <div className="card">
           <button onClick={getSheet}>Get Sheet</button>
           <table className="csv-table">
