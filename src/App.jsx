@@ -50,7 +50,7 @@ function App() {
 
     const requiredInspectionsIndex = data[0].indexOf('Required Inspections'); // Find index of 'Required Inspections' column
     const requiredInspectionsData = [];
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 1; i < data.length; i++) {
       requiredInspectionsData.push(data[i][requiredInspectionsIndex]);
     }
     const labels = [...new Set(requiredInspectionsData)];
@@ -156,8 +156,8 @@ function App() {
         <h1>OPIM DATA VISUALIZATION</h1>
         <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
         <div>
-          <h1>Pie Chart</h1>
-          <div style={{ width: '500px', height: '500px' }}>
+          <h1>Inspection Requirement Breakdown</h1>
+          <div style={{ width: '500px', height: '500px', margin: '0 auto', textAlign: 'center' }}>
             <canvas id="pieChart" width="400" height="400"></canvas>
           </div>
           {loading && <p>Loading...</p>}
