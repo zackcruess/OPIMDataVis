@@ -153,7 +153,7 @@ function App() {
             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none' }} />
           </a>
         </div>
-        <h1>OPIM DATA VISUALIZATION</h1>
+        <h1>OPIM DATA VISUALIZATIONS</h1>
         <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
         <div>
           <h1>Inspection Requirement Breakdown</h1>
