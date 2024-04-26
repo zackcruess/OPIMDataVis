@@ -81,7 +81,7 @@ function App() {
   }
 
   async function getSheet() {
-    const url = 'https://docs.google.com/spreadsheets/d/19bfurNR8JlxD46Fmg0i0Hau3rrh1SsCBe6pjgQ_SOcs/gviz/tq?tqx=out:csv&sheet=STR%20Regulation%20Database';
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVDFl-ulIxy-jxupNlaknA4IDAf40SvkieKY9LKg2Zo2pv1n7AD-OlSNKe5tWNQ8OsLIvkSjVzx5Z1/pub?gid=256206415&single=true&output=csv';
     try {
       const response = await fetch(url);
       if (response.ok) {
