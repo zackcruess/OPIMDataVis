@@ -113,11 +113,11 @@ function App() {
       <div style={{ backgroundColor: 'lightgray', minHeight: '200vh', padding: 0, marginLeft: 0, marginRight: 0, width: '100%' }}>
         <div style={{ backgroundColor: 'white', padding: '10px', position: 'fixed', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 999 }}>
           <div>
-            <h1 style={{ color: 'darkblue', fontSize: '24px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
+            <h1 style={{ color: 'darkblue', fontSize: '28px', margin: 0 }}>Inside AirBnb: Short-Term Rental Regulation Dashboard</h1>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ color: 'white', backgroundColor: '#007bff', fontWeight: 'bold', padding: '5px 10px', borderRadius: '5px', marginRight: '30px' }}>Donate!</span>
-            <a href="https://forms.gle/WpxsbaiAgdeqX2JJ8" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Times New Roman', fontSize: '16pt', color: '#007bff', marginRight: '150px', textDecoration: 'none' }}>Submit an STR Regulation Here</a>
+            <a href="https://forms.gle/WpxsbaiAgdeqX2JJ8" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Times New Roman', fontSize: '16pt', color: '#007bff', marginRight: '50px', textDecoration: 'none', }}>Submit an STR Regulation Here!</a>
           </div>
         </div>
         <div style={{ position: 'relative' }}>
@@ -147,10 +147,10 @@ function App() {
         </div>
         <div>
           <a href="https://insideairbnb.com/" target="_blank">
-            <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" />
+            <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" style={{ width: '150px', height: '150px' }} />
           </a>
           <a href="https://undergrad.business.uconn.edu/academics/majors/aim/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none' }} />
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none', width: "130px", height: "150px" }} />
           </a>
         </div>
         <h1>OPIM DATA VISUALIZATIONS</h1>
@@ -163,7 +163,7 @@ function App() {
           {loading && <p>Loading...</p>}
         </div>
         <div className="card">
-          <button onClick={getSheet}>Get Sheet</button>
+          <button onClick={getSheet}>View All Regulations</button>
           <table className="csv-table">
             <thead>
               <tr>
