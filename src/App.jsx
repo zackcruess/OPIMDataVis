@@ -10,6 +10,8 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -30,7 +32,6 @@ function App() {
   };
 
 
-
   const parseCSVPie = (csvString) => {
     const rows = csvString.trim().split('\n');
     const headers = rows[0].split(',');
@@ -48,7 +49,7 @@ function App() {
     const ctx = document.getElementById('pieChart');
     if (!ctx) return;
 
-    const requiredInspectionsIndex = data[0].indexOf('Required Inspections'); // Find index of 'Required Inspections' column
+    const requiredInspectionsIndex = data[0].indexOf('Required Inspections');
     const requiredInspectionsData = [];
     for (let i = 1; i < data.length; i++) {
       requiredInspectionsData.push(data[i][requiredInspectionsIndex]);
@@ -108,6 +109,7 @@ function App() {
     return csvData;
   }
 
+
   return (
     <>
       <div style={{ backgroundColor: 'lightgray', minHeight: '200vh', padding: 0, marginLeft: 0, marginRight: 0, width: '100%' }}>
@@ -139,31 +141,40 @@ function App() {
             <option value="">Select State</option>
             <option value="1">Alabama</option>
             <option value="2">Alaska</option>
-            <option value="3">Arkansas</option>
+            <option value="3">Arizona</option>
+            <option value="4">Arkansas</option>
+            <option value="5">California</option>
+            <option value="6">Connecticut</option>
+
           </select>
         </div>
         <div style={{ paddingLeft: '20px', paddingTop: '40px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw', textAlign: 'Left' }}>
           This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal was to effectively demonstrate the effects of Short-Term Rental regulations using data visualizations. 4/25/24.
         </div>
         <div style={{ padding: '20px', fontSize: '16px', fontFamily: 'Calibri', textAlign: 'left' }}>
-      {data && <p>Number of regulations in database: {data.length - 1}</p>} {/* Subtract 1 to exclude the header row */}
-    </div>
+          <div style={{ backgroundColor: 'white', display: 'inline-block', padding: '10px', borderRadius: '10px' }}>
+            <p style={{ fontSize: '16pt', color: 'darkblue', margin: '0' }}>Regulations Currently in Database:</p>
+            {data && <p style={{ fontSize: '28pt', margin: '0', textAlign: 'center', fontWeight: 'bold' }}>{data.length - 1}</p>}
+          </div>
+        </div>
         <div>
           <a href="https://insideairbnb.com/" target="_blank">
-            <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" style={{ width: '150px', height: '150px' }} />
+            <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" style={{ width: '200px', height: '200px' }} />
           </a>
           <a href="https://undergrad.business.uconn.edu/academics/majors/aim/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none', width: "130px", height: "150px" }} />
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none', width: "170px", height: "200px" }} />
           </a>
         </div>
-        <h1>OPIM DATA VISUALIZATIONS</h1>
-        <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
         <div>
           <h1>Inspection Requirement Breakdown</h1>
           <div style={{ width: '500px', height: '500px', margin: '0 auto', textAlign: 'center' }}>
             <canvas id="pieChart" width="400" height="400"></canvas>
           </div>
           {loading && <p>Loading...</p>}
+        </div>
+        <h1> </h1>
+        <div>
+          <img src="https://i.imgur.com/GNXuZzp.png" alt="Bar Chart example" />
         </div>
         <div className="card">
           <button onClick={getSheet}>View All Regulations</button>
