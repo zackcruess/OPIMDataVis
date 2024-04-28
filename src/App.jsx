@@ -145,6 +145,9 @@ function App() {
         <div style={{ paddingLeft: '20px', paddingTop: '40px', fontSize: '12pt', fontFamily: 'Calibri', maxWidth: '50vw', textAlign: 'Left' }}>
           This is a website prototype done for our OPIM 3211 systems design and analysis project in assistance with InsideAirbnb. The goal was to effectively demonstrate the effects of Short-Term Rental regulations using data visualizations. 4/25/24.
         </div>
+        <div style={{ padding: '20px', fontSize: '16px', fontFamily: 'Calibri', textAlign: 'left' }}>
+      {data && <p>Number of regulations in database: {data.length - 1}</p>} {/* Subtract 1 to exclude the header row */}
+    </div>
         <div>
           <a href="https://insideairbnb.com/" target="_blank">
             <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" style={{ width: '150px', height: '150px' }} />
