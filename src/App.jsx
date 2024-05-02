@@ -161,9 +161,6 @@ function App() {
           <a href="https://insideairbnb.com/" target="_blank">
             <img src="https://pbs.twimg.com/profile_images/575532099827986432/uiwyE4c1_400x400.png" className="logo insideairbnb" alt="InsideAirBnb logo" style={{ width: '200px', height: '200px' }} />
           </a>
-          <a href="https://undergrad.business.uconn.edu/academics/majors/aim/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Connecticut_Huskies_logo.svg/640px-Connecticut_Huskies_logo.svg.png" className="logo uconn" alt="uconn logo" style={{ animation: 'none', width: "170px", height: "200px" }} />
-          </a>
         </div>
         <div>
           <h1>Inspection Requirement Breakdown</h1>
